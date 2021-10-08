@@ -16,16 +16,36 @@
   "scripts": {
     "start": "tsc -w",
     "type-check": "tsc --noEmit",
-    "dev" : "node --loader ts-node/esm/transpile-only ./src/index.ts",
+    "dev": "node --loader ts-node/esm/transpile-only ./src/index.ts",
     "prebuild": "node -e 'fs.rmSync(`dist`, {recursive:true, force:true})'",
-    "format": "prettier -w ./src/*"
+    "format": "prettier -w ./src/*",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.10.3",
     "eslint": "^7.32.0",
     "eslint-config-sumikko": "^1.2.2",
+    "jest": "^27.2.4",
     "prettier": "^2.4.1",
+    "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "useESM": true
+      }
+    },
+    "preset": "ts-jest/presets/js-with-ts-esm",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
   }
 }
