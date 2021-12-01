@@ -36,4 +36,13 @@ describe("Parsed markdown text", () => {
 
     expect(strikeText).toEqual("<p>before<del>test</del>after</p>");
   });
+
+  // ul > li
+  test("Parsed list", () => {
+    const listText = markdownParser("- list1\n- list2\n  - list2-1\n  - list2-2");
+
+    expect(listText).toEqual(
+      "<ul><li>list1</li><li>list2<ul><li>list2-1</li><li>list2-2</li></ul></li></ul>"
+    );
+  });
 });
